@@ -6,8 +6,6 @@ use App\Factories\FlickrFactory;
 use App\Handlers\FlickrApiHandler;
 use JeroenG\Flickr\Flickr;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FlickrApiHandlerTest extends TestCase
 {

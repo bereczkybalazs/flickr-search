@@ -24,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
+            'App\Contracts\Handlers\FlickrApiHandlerInterface',
+            'App\Handlers\FlickrApiHandler'
+        );
+        $this->app->bind(
             'App\Contracts\Factories\FlickrFactoryInterface',
             'App\Factories\FlickrFactory'
         );
