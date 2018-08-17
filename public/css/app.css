@@ -11358,6 +11358,7 @@ a.text-dark:focus {
 }
 
 .search-page .search-container {
+  color: #1d2124;
   max-width: 600px;
   margin: auto;
   padding: 20px;
@@ -11366,5 +11367,30 @@ a.text-dark:focus {
 .search-page .search-container .vue-treeselect,
 .search-page .search-container .form-control {
   margin-bottom: 15px;
+}
+
+.search-page .search-result {
+  position: relative;
+}
+
+.search-page .search-result .content {
+  position: absolute;
+  height: 100px;
+  background: rgba(40, 167, 69, 0.7);
+  z-index: 299;
+  bottom: 0px;
+  padding: 15px;
+  width: 100%;
+  color: #fff;
+}
+
+.search-page .search-result .content h5 {
+  font-weight: 600;
+}
+
+.search-page .search-result .content i {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
 }
 

@@ -1,13 +1,12 @@
 <template>
-    <div class="search-result">
-        <div class="card">
-            <img class="card-img-top" :alt="title"
-                 :src="image"/>
-            <div class="card-block">
-                <h5 class="card-title">
+    <div>
+        <div class="search-result">
+            <img :alt="title" :src="image"/>
+            <div class="content">
+                <h5>
                     {{ title }}
                 </h5>
-                <i>{{ size }}</i>
+                <i>({{ size }})</i>
             </div>
         </div>
     </div>

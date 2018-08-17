@@ -1,10 +1,32 @@
 .search-page {
     .search-container {
+        color: #1d2124;
         max-width: 600px;
         margin: auto;
         padding: 20px;
         .vue-treeselect, .form-control {
             margin-bottom: 15px;
+        }
+    }
+    .search-result {
+        position: relative;
+        .content {
+            position: absolute;
+            height: 100px;
+            background: rgba(40, 167, 69, 0.7);
+            z-index: 299;
+            bottom: 0px;
+            padding: 15px;
+            width: 100%;
+            color: #fff;
+            h5 {
+                font-weight: 600;
+            }
+            i {
+                position: absolute;
+                right: 5px;
+                bottom: 5px;
+            }
         }
     }
 }

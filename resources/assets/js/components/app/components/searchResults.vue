@@ -1,14 +1,18 @@
 <template>
     <div class="container-fluid">
-        <div v-for="searchResult in searchResults">
-            <search-result-item
-                v-if="isValid(searchResult)"
-                :title="searchResult.title"
-                :image="searchResult.url_m"
-                :width="searchResult.width_m"
-                :height="searchResult.height_m"
-            >
-            </search-result-item>
+        <div class="grid">
+            <div v-masonry transition-duration="0.3s" item-selector=".grid-item">
+                <div v-masonry-tile class="grid-item" v-for="(searchResult, index) in searchResults">
+                    <search-result-item
+                            v-if="isValid(searchResult)"
+                            :title="searchResult.title"
+                            :image="searchResult.url_m"
+                            :width="searchResult.width_m"
+                            :height="searchResult.height_m"
+                    >
+                    </search-result-item>
+                </div>
+            </div>
         </div>
     </div>
 </template>
