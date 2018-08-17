@@ -1,0 +1,19 @@
+ip: 192.168.10.82
+memory: 2048
+cpus: 2
+provider: virtualbox
+authorize: ~/.ssh/id_rsa.pub
+keys:
+    - ~/.ssh/id_rsa
+folders:
+    -
+        map: 'C:\Work\flickr-search'
+        to: /home/vagrant/code
+sites:
+    -
+        map: flickr-search.site
+        to: /home/vagrant/code/public
+databases:
+    - homestead
+name: flickr-search
+hostname: flickr-search
