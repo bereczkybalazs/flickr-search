@@ -16,6 +16,7 @@
 <script>
     import bus from '../../../bus'
     import SearchResultItem from './searchResultItem.vue'
+    import Joi from 'joi'
 
     export default {
         mounted () {
@@ -31,7 +32,13 @@
         },
         methods: {
             isValid: searchResult => {
-                return true
+                let schema = Joi.object().keys({
+                    title: Joi.string().required(),
+                    image: Joi.string().required(),
+                    height: [Joi.string().required(), Joi.number().required()],
+                    width: [Joi.string().required(), Joi.number().required()]
+                })
+                return Joi.validate(searchResult, schema)
             }
         },
         components: {
