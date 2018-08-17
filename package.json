@@ -29,6 +29,7 @@
         "joi": "^13.6.0"
     },
     "dependencies": {
+        "@riophae/vue-treeselect": "0.0.36",
         "net": "^1.0.2"
     }
 }
