@@ -1,29 +1,31 @@
 <template>
     <div class="search-result">
-        <h2>{{ title }}</h2>
-        <img :src="image">
-        <span>{{ size }}</span>
+        <div class="card">
+            <img class="card-img-top" :alt="title"
+                 :src="image"/>
+            <div class="card-block">
+                <h5 class="card-title">
+                    {{ title }}
+                </h5>
+                <i>{{ size }}</i>
+            </div>
+        </div>
     </div>
 </template>
-
 <script>
     export default {
         props: {
             title: {
-                type: String,
-                required: true
+                type: String
             },
             image: {
-                type: String,
-                required: true
+                type: String
             },
             height: {
-                type: [String, Number],
-                required: true
+                type: [String, Number]
             },
             width: {
-                type: [String, Number],
-                required: true
+                type: [String, Number]
             }
         },
         computed: {

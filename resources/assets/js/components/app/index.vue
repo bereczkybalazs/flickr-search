@@ -1,7 +1,9 @@
 <template>
-    <div>
-        <search></search>
-        <search-results></search-results>
+    <div class="search-page">
+        <div class="container">
+            <search></search>
+            <search-results></search-results>
+        </div>
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container-fluid">
         <div v-for="searchResult in searchResults">
             <search-result-item
                 v-if="isValid(searchResult)"
