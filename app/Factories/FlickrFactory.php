@@ -8,7 +8,7 @@ use JeroenG\Flickr\Flickr;
 
 class FlickrFactory implements FlickrFactoryInterface
 {
-    public static function getApi() {
+    public function getApi() {
 
         $apiKey = env('FLICKR_KEY');
         $apiFormat = 'php_serial';

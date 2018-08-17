@@ -2,27 +2,79 @@
 
 namespace Tests\Unit\Handlers;
 
+use App\Factories\FlickrFactory;
 use App\Handlers\FlickrApiHandler;
+use JeroenG\Flickr\Flickr;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FlickrApiHandlerTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
+    const FAKE_KEYWORD = 'hello';
+
+    /*
+     * @test
      */
-    public function testExample()
+    public function test_has_no_response()
     {
-        $flickrApiHandler = $this->getApiHandlerMock();
-        $this->assertNotNull($flickrApiHandler);
+        $flickr = $this->getMockByClass(Flickr::class);
+        $flickr->expects($this->once())
+            ->method('request')
+            ->willReturnCallback(function () {
+                $response = new \stdClass();
+                $response->photos = new \stdClass();
+                $response->photos->photo = [];
+                return $response;
+            });
+
+        $flickrApiHandler = new FlickrApiHandler($this->getFlickrApiHandler($flickr));
+
+        $response = $flickrApiHandler->searchByKeyword(self::FAKE_KEYWORD);
+
+        $this->assertObjectHasAttribute('photos', $response);
+        $this->assertObjectHasAttribute('photo', $response->photos);
+        $this->assertEmpty($response->photos->photo);
     }
 
-    private function getApiHandlerMock()
+    /*
+     * @test
+     */
+    public function test_has_response()
     {
-        return $this->getMockBuilder(FlickrApiHandler::class)
+        $flickr = $this->getMockByClass(Flickr::class);
+        $flickr->expects($this->once())
+            ->method('request')
+            ->willReturnCallback(function () {
+                $response = new \stdClass();
+                $response->photos = new \stdClass();
+                $response->photos->photo = [
+                    ['hello']
+                ];
+                return $response;
+            });
+
+        $flickrApiHandler = new FlickrApiHandler($this->getFlickrApiHandler($flickr));
+
+        $response = $flickrApiHandler->searchByKeyword(self::FAKE_KEYWORD);
+
+        $this->assertObjectHasAttribute('photos', $response);
+        $this->assertObjectHasAttribute('photo', $response->photos);
+        $this->assertNotEmpty($response->photos->photo);
+    }
+
+    private function getFlickrApiHandler($flickr)
+    {
+        $flickrFactory = $this->getMockByClass(FlickrFactory::class);
+        $flickrFactory->expects($this->once())
+            ->method('getApi')
+            ->willReturn($flickr);
+        return $flickrFactory;
+    }
+
+    private function getMockByClass($class)
+    {
+        return $this->getMockBuilder($class)
             ->disableOriginalConstructor()
             ->getMock();
     }
