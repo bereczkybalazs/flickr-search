@@ -1,12 +1,14 @@
 <template>
     <div>
         <search></search>
+        <search-results></search-results>
     </div>
 </template>
 
 <script>
     import bus from '../../bus'
     import search from './components/search.vue'
+    import SearchResults from './components/searchResults.vue'
     import axios from 'axios'
     import config from '../../config'
 
@@ -18,7 +20,8 @@
             })
         },
         components: {
-            search
+            search,
+            SearchResults
         },
         data () {
             return {
@@ -30,6 +33,7 @@
                 if (!this.searchIsBusy) {
                     this.searchIsBusy = true
                     axios.get(config.searchApiUrl, {params: {q: keyword}}).then(response => {
+                        bus.$emit('setSearchResults', response.data)
                         this.searchIsBusy = false
                     })
                 }
